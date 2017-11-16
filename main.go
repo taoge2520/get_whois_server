@@ -65,7 +65,7 @@ func get_suffix() (suffixs []string, err error) {
 		return
 	}
 	defer db.Close()
-	rows, err := db.Query("select suffix from conf_server")
+	rows, err := db.Query("select suffix from conf_rootserver")
 	if err != nil {
 		return
 	}
@@ -122,7 +122,7 @@ func tosql(suf string, nserver string) (err error) {
 		return
 	}
 	defer db.Close()
-	stmt, err := db.Prepare("update conf_server set nserver=? where suffix=?")
+	stmt, err := db.Prepare("update conf_rootserver set server=? where suffix=?")
 	if err != nil {
 		return
 	}
